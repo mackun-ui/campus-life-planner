@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life Planner</title>
+</head>
+<body>
+    
+    <header>
+        <h1>Campus Life Planner</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="forms.html">Add Event</a></li>
+                <li><a href="records.html">View Events</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="upcoming">
+            <h2>Upcoming Events</h2>
+            <ul id="upcomingList"></ul>
+        </section>
+
+        <section id="stats">
+            <h2>Stats & Trends</h2>
+            <div id="statsContainer">
+                <p><strong>Total Events:</strong> <span id="totalEvents">0</span></p>
+                <p><strong>Total Duration:</strong> <span id="totalDuration">0</span></p>
+                <p><strong>Top Tag:</strong> <span id="topTag">N/A</span></p>
+            </div>
+            <div id="trendChart" class="chart"></div>
+        </section>
+
+        <section id="about">
+            <h2>About Campus Life Planner</h2>
+            <p>Campus Life Planner is designed to help students manage their campus activities effectively. Plan your events, track your time, and stay organized with ease.</p>
+            <p>Version: 1.0.0</p>
+            <p>Developed by <a href="https://github.com/mackun-ui">Manuelle Aseye Ackun</a> | <a href="mailto:m.ackun@alustudent.com">m.ackun@alustudent.com</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Campus Life Planner. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="scripts/dashboard.js"></script>
+</body>
+</html>

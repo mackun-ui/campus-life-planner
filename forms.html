@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+</head>
+<body>
+
+    <header>
+        <h1>Add Event</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="forms.html">Add Event</a></li>
+                <li><a href="records.html">View Events</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <form id="eventForm" novalidate>
+            <label>Event Name: <input id="title" name="title" required /></label>
+            <label>Due Date: <input id="dueDate" type="date" required /></label>
+            <label>Duration (mins) <input id="duration" type="number" required /></label>
+            <label>Tag: 
+                <select id="tag" required>
+                    <option value="" disabled selected>Select a tag</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Social">Social</option>
+                    <option value="Health">Health</option>
+                    <option value="Personal Development">Personal Development</option>
+                    <option value="Other">Other</option>
+                </select>
+            </label>
+            <button type="submit">Add Event</button>
+            <p id="formMsg" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Campus Life Planner. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="scripts/forms.js"></script>
+
+</body>
+</html>
