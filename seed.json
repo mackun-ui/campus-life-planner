@@ -1,0 +1,13 @@
+
+[
+    {
+        "id": "task_001",
+        "title": "Group study session",
+        "dueDate": "2025-10-18",
+        "duration": 90, 
+        "tag": "Academics",
+        "createdAt": "2025-10-15T09:00:00Z",
+        "updatedAt": "2025-10-15T09:00:00Z"
+    }
+
+]
