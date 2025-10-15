@@ -22,7 +22,6 @@ function renderStats() {
   totalEvents.textContent = state.events.length;
   totalDuration.textContent = state.events.reduce((sum, e) => sum + Number(e.duration), 0);
   
-  // Top tag
   const tagCount = {};
   state.events.forEach(e => tagCount[e.tag] = (tagCount[e.tag] || 0) + 1);
   const top = Object.entries(tagCount).sort((a, b) => b[1] - a[1])[0];
@@ -44,6 +43,15 @@ function renderTrend() {
     .map(count => `<div class="bar" style="height:${count * 20}px"></div>`)
     .join("");
 }
+
+const settings = JSON.parse(localStorage.getItem("campusPlanner:settings") || "{}");
+const unit = settings.unit || "minutes";
+
+document.querySelectorAll(".duration").forEach(el => {
+  const duration = Number(el.dataset.duration);
+  el.textContent = unit === "hours" ? (duration / 60).toFixed(2) + "h" : duration + " min";
+});
+
 
 renderUpcoming();
 renderStats();

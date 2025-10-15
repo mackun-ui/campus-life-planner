@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Events</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+    <header>
+        <h1>Campus Life Planner</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="forms.html">Add Event</a></li>
+                <li><a href="records.html">View Events</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <input id="search" type="text" placeholder="Search Event" />
+        <table id="eventsTable">
+            <thead>
+                <tr>
+                    <th data-sort="title">Event Name</th>
+                    <th data-sort="dueDate">Due Date</th>
+                    <th data-sort="duration">Duration</th>
+                    <th data-sort="tag">Tag</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Campus Life Planner. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        import { applySavedTheme } from './scripts/theme.js';
+        applySavedTheme();
+    </script>
+
+    <script type="module" src="scripts/records.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+body.light-theme {
+  background: #fafafa;
+  color: #222;
+}
+
+body.dark-theme {
+  background: #1a1a1a;
+  color: #eee;
+}
+
+header.light-theme, footer.light-theme {
+  background: #002b5b;
+  color: white;
+}
+
+header.dark-theme, footer.dark-theme {
+  background: #000;
+  color: #fff;
+}
+
+/* Optional: buttons adapt to theme */
+button {
+  transition: background 0.2s;
+}
+
+body.light-theme button {
+  background: #0056b3;
+  color: #fff;
+}
+
+body.dark-theme button {
+  background: #444;
+  color: #fff;
+}
