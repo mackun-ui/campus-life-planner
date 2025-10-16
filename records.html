@@ -8,37 +8,56 @@
 </head>
 <body>
 
-    <header>
-        <h1>Campus Life Planner</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="forms.html">Add Event</a></li>
-                <li><a href="records.html">View Events</a></li>
-                <li><a href="settings.html">Settings</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <header>
+            <aside>
 
-    <main>
-        <input id="search" type="text" placeholder="Search Event" />
-        <table id="eventsTable">
-            <thead>
-                <tr>
-                    <th data-sort="title">Event Name</th>
-                    <th data-sort="dueDate">Due Date</th>
-                    <th data-sort="duration">Duration</th>
-                    <th data-sort="tag">Tag</th>
-                    <th>Actions</th>
-                </tr> 
-            </thead>
-            <tbody></tbody>
-        </table>
-    </main>
+                <div class="top">
+                    <h2>Campus Life Planner</h2>
+                </div>
 
-    <footer>
-        <p>&copy; 2025 Campus Life Planner. All rights reserved.</p>
-    </footer>
+                <div class="sidebar" id="sidebar">
+                    <a href="index.html" class="active">
+                        <h3>Dashboard</h3>
+                    </a>
+                    <a href="forms.html" class="active">
+                        <h3>Add Event</h3>
+                    </a>
+                    <a href="records.html" class="active">
+                        <h3>View Events</h3>
+                    </a>
+                    <a href="settings.html" class="active">
+                        <h3>Settings</h3>
+                    </a>
+                </div>
+                
+            </aside>
+            
+        </header>
+
+        <main>
+            <h1>View Events</h1>
+
+            <input id="search" type="text" placeholder="Search Event" />
+            <table id="eventsTable">
+                <thead>
+                    <tr>
+                        <th data-sort="title">Event Name</th>
+                        <th data-sort="dueDate">Due Date</th>
+                        <th data-sort="duration">Duration</th>
+                        <th data-sort="tag">Tag</th>
+                        <th>Actions</th>
+                    </tr> 
+                </thead>
+                <tbody></tbody>
+            </table>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Campus Life Planner. All rights reserved.</p>
+        </footer>
+
+    </div>
 
     <script type="module">
         import { applySavedTheme } from './scripts/theme.js';

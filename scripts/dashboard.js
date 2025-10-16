@@ -52,6 +52,5 @@ document.querySelectorAll(".duration").forEach(el => {
   el.textContent = unit === "hours" ? (duration / 60).toFixed(2) + "h" : duration + " min";
 });
 
-
 renderUpcoming();
 renderStats();

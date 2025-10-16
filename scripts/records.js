@@ -14,6 +14,13 @@ function formatDuration(value) {
 
 function render(events, re = null) {
   tableBody.innerHTML = "";
+  if (!events || events.length === 0) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td colspan="5" class="no-events">No events currently.</td>`;
+    tableBody.appendChild(tr);
+    return;
+  }
+
   events.forEach(e => {
     const displayDuration = formatDuration(e.duration);
     const tr = document.createElement("tr");
@@ -22,7 +29,10 @@ function render(events, re = null) {
       <td>${e.dueDate}</td>
       <td>${displayDuration}</td>
       <td>${highlight(e.tag, re)}</td>
-      <td><button class="delete" data-id="${e.id}">🗑</button></td>
+    <td>
+      <button class="edit" data-id="${e.id}">Edit</button>
+      <button class="delete" data-id="${e.id}">Delete</button>
+    </td>
     `;
     tableBody.appendChild(tr);
   });
@@ -37,14 +47,25 @@ search.addEventListener("input", () => {
 });
 
 tableBody.addEventListener("click", e => {
+  // Edit action: navigate to the form with the event id
+  if (e.target.classList.contains("edit")) {
+    const id = e.target.dataset.id;
+    // open the form page with ?id=...
+    window.location.href = `forms.html?id=${encodeURIComponent(id)}`;
+    return;
+  }
+
   if (e.target.classList.contains("delete")) {
     const id = e.target.dataset.id;
+    // Ask for confirmation before deleting
+    const ok = window.confirm("Are you sure you want to delete this event?");
+    if (!ok) return;
     state.deleteEvent(id);
     render(state.events);
   }
 });
 
-// Sorting: use state.events (not a local `tasks`) and the module's render
+
 document.querySelectorAll("th[data-sort]").forEach(th => {
   th.addEventListener("click", () => {
     const key = th.dataset.sort;

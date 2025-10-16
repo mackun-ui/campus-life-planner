@@ -1,13 +1,137 @@
-
 [
-    {
-        "id": "task_001",
-        "title": "Group study session",
-        "dueDate": "2025-10-18",
-        "duration": 90, 
-        "tag": "Academics",
-        "createdAt": "2025-10-15T09:00:00Z",
-        "updatedAt": "2025-10-15T09:00:00Z"
-    }
-
+  {
+    "id": "event_001",
+    "title": "Group study session",
+    "dueDate": "2025-10-18",
+    "duration": 90,
+    "tag": "Academics",
+    "createdAt": "2025-10-15T09:00:00Z",
+    "updatedAt": "2025-10-15T09:00:00Z"
+  },
+  {
+    "id": "event_002",
+    "title": "Math homework: calculus",
+    "dueDate": "2025-10-16",
+    "duration": 120,
+    "tag": "Academics",
+    "createdAt": "2025-10-15T10:00:00Z",
+    "updatedAt": "2025-10-15T10:00:00Z"
+  },
+  {
+    "id": "event_003",
+    "title": "Physics lab report",
+    "dueDate": "2025-10-20",
+    "duration": 180,
+    "tag": "Academics",
+    "createdAt": "2025-10-15T11:00:00Z",
+    "updatedAt": "2025-10-15T11:00:00Z"
+  },
+  {
+    "id": "event_004",
+    "title": "Resume workshop",
+    "dueDate": "2025-10-22",
+    "duration": 60,
+    "tag": "Career",
+    "createdAt": "2025-10-15T12:00:00Z",
+    "updatedAt": "2025-10-15T12:00:00Z"
+  },
+  {
+    "id": "event_005",
+    "title": "Club meeting: photography",
+    "dueDate": "2025-10-17",
+    "duration": 90,
+    "tag": "Clubs",
+    "createdAt": "2025-10-15T13:00:00Z",
+    "updatedAt": "2025-10-15T13:00:00Z"
+  },
+  {
+    "id": "event_006",
+    "title": "Doctor appointment",
+    "dueDate": "2025-10-19",
+    "duration": 30,
+    "tag": "Personal",
+    "createdAt": "2025-10-15T14:00:00Z",
+    "updatedAt": "2025-10-15T14:00:00Z"
+  },
+  {
+    "id": "event_007",
+    "title": "Volunteer at food bank",
+    "dueDate": "2025-10-21",
+    "duration": 150,
+    "tag": "Volunteer",
+    "createdAt": "2025-10-15T15:00:00Z",
+    "updatedAt": "2025-10-15T15:00:00Z"
+  },
+  {
+    "id": "event_008",
+    "title": "Study group: chemistry",
+    "dueDate": "2025-10-16",
+    "duration": 75,
+    "tag": "Academics",
+    "createdAt": "2025-10-15T16:00:00Z",
+    "updatedAt": "2025-10-15T16:00:00Z"
+  },
+  {
+    "id": "event_009",
+    "title": "Guitar practice",
+    "dueDate": "2025-10-24",
+    "duration": 45,
+    "tag": "Hobby",
+    "createdAt": "2025-10-15T17:00:00Z",
+    "updatedAt": "2025-10-15T17:00:00Z"
+  },
+  {
+    "id": "event_010",
+    "title": "Project team sync",
+    "dueDate": "2025-10-18",
+    "duration": 60,
+    "tag": "Project",
+    "createdAt": "2025-10-15T18:00:00Z",
+    "updatedAt": "2025-10-15T18:00:00Z"
+  },
+  {
+    "id": "event_011",
+    "title": "Library: research for paper",
+    "dueDate": "2025-10-23",
+    "duration": 120,
+    "tag": "Research",
+    "createdAt": "2025-10-15T19:00:00Z",
+    "updatedAt": "2025-10-15T19:00:00Z"
+  },
+  {
+    "id": "event_012",
+    "title": "Career fair prep",
+    "dueDate": "2025-10-25",
+    "duration": 90,
+    "tag": "Career",
+    "createdAt": "2025-10-15T20:00:00Z",
+    "updatedAt": "2025-10-15T20:00:00Z"
+  },
+  {
+    "id": "event_013",
+    "title": "Jogging with friends",
+    "dueDate": "2025-10-16",
+    "duration": 40,
+    "tag": "Health",
+    "createdAt": "2025-10-15T21:00:00Z",
+    "updatedAt": "2025-10-15T21:00:00Z"
+  },
+  {
+    "id": "event_014",
+    "title": "Cook dinner for flatmates",
+    "dueDate": "2025-10-17",
+    "duration": 75,
+    "tag": "Personal",
+    "createdAt": "2025-10-15T22:00:00Z",
+    "updatedAt": "2025-10-15T22:00:00Z"
+  },
+  {
+    "id": "event_015",
+    "title": "Final exam revision",
+    "dueDate": "2025-10-26",
+    "duration": 240,
+    "tag": "Academics",
+    "createdAt": "2025-10-15T23:00:00Z",
+    "updatedAt": "2025-10-15T23:00:00Z"
+  }
 ]

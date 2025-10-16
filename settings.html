@@ -7,62 +7,82 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <header>
-        <h1>Settings</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="forms.html">Add Event</a></li>
-                <li><a href="records.html">View Events</a></li>
-                <li><a href="settings.html">Settings</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section id="duration">
-            <h2>Duration Display</h2>
-            <label>
-                <select id="unitSelect">
-                    <option value="minutes">Minutes</option>
-                    <option value="hours">Hours</option>
-                </select>
-            </label>
-        </section>
+    <div class="container">
+        <header>
+            <aside>
 
-        <section id="theme">
-            <h2>Theme</h2>
-            <label>
-                <select id="themeSelect">
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
-                </select>
-            </label>
-        </section>
+                <div class="top">
+                    <h2>Campus Life Planner</h2>
+                </div>
 
-        <section>
-            <h2>Event Cap</h2>
-            <label>
-                Maximun Events to Display:
-                <input type="number" id="maxEvents" min="1" placeholder="e.g. 50" />
-            </label>
-        </section>
+                <div class="sidebar" id="sidebar">
+                    <a href="index.html" class="active">
+                        <h3>Dashboard</h3>
+                    </a>
+                    <a href="forms.html" class="active">
+                        <h3>Add Event</h3>
+                    </a>
+                    <a href="records.html" class="active">
+                        <h3>View Events</h3>
+                    </a>
+                    <a href="settings.html" class="active">
+                        <h3>Settings</h3>
+                    </a>
+                </div>
+                
+            </aside>
+            
+        </header>
 
-        <section>
-            <h2>Data Management</h2>
-            <div class="settings-buttons">
-                <button id="exportBtn">Export Events</button>
-                <input type="file" id="importFile" accept=".json" hidden />
-                <button id="importBtn">Import Events</button>
-                <button id="clearBtn" class="danger">Clear All Events</button>
-            </div>
-            <p id="statusMsg" role="status" aria-live="polite"></p>
-        </section>
-    </main>
+        <main>
+            <h1>Settings</h1>
 
-    <footer>
-        <p>&copy; 2025 Campus Life Planner. All rights reserved.</p>
-    </footer>
+            <section id="duration">
+                <h2>Duration Display</h2>
+                <label>
+                    <select id="unitSelect">
+                        <option value="minutes">Minutes</option>
+                        <option value="hours">Hours</option>
+                    </select>
+                </label>
+            </section>
+
+            <section id="theme">
+                <h2>Theme</h2>
+                <label>
+                    <select id="themeSelect">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                </label>
+            </section>
+
+            <section>
+                <h2>Event Cap</h2>
+                <label>
+                    Maximun Events to Display:
+                    <input type="number" id="maxEvents" min="1" placeholder="e.g. 50" />
+                </label>
+            </section>
+
+            <section>
+                <h2>Data Management</h2>
+                <div class="settings-buttons">
+                    <button id="exportBtn">Export Events</button>
+                    <input type="file" id="importFile" accept=".json" hidden />
+                    <button id="importBtn">Import Events</button>
+                    <button id="clearBtn" class="danger">Clear All Events</button>
+                </div>
+                <p id="statusMsg" role="status" aria-live="polite"></p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Campus Life Planner. All rights reserved.</p>
+        </footer>
+
+    </div>
 
     <script type="module" src="scripts/settings.js"></script>
 </body>
