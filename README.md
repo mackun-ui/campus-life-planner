@@ -98,6 +98,11 @@ Watch the demo video on Youtube: https://youtu.be/j3s7xMSzKsk
 
 ---
 
+## Live URL
+Run the app online using this link: https://mackun-ui.github.io/campus-life-planner/
+
+---
+
 ## How to Run App Locally
 1. Clone or download this repository:
     ```bash
