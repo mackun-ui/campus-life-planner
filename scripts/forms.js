@@ -1,5 +1,4 @@
 import { state } from "./state.js";
-import { validateField } from "./validators.js";
 
 const settings = JSON.parse(localStorage.getItem("campusPlanner:settings") || "{}");
 const maxEvents = settings.maxEvents || null;
@@ -54,74 +53,33 @@ if (editId) {
   }
 }
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", e => {
   e.preventDefault();
 
-  const msg = document.getElementById("formMsg");
-  msg.textContent = "";
-  msg.style.color = "red";
-
-  const title = form.title.value.trim();
-  const dueDate = form.dueDate.value.trim();
-  const duration = form.duration.value.trim();
-  const tag = form.tag.value.trim();
-
-  // Run each field through validators.js
-  const validations = [
-    { name: "title", value: title },
-    { name: "dueDate", value: dueDate },
-    { name: "duration", value: duration },
-    { name: "tag", value: tag }
-  ];
-
-  for (const field of validations) {
-    const valid = validateField(field.name, field.value);
-    if (!valid) {
-      msg.textContent = `Invalid ${field.name}. Please check the format.`;
-      msg.style.color = "red";
-      msg.focus();
-      return; // Stop submission on first invalid field
-    }
-  }
-
-  // Additional advanced regex check for duplicate words (title)
-  const dupWordRe = /\b(\w+)\s+\1\b/;
-  if (dupWordRe.test(title)) {
-    msg.textContent = "Title contains duplicate words (e.g., 'meet meet').";
+  if (!editing && maxEvents && state.events.length >= maxEvents) {
+    msg.textContent = `Cannot add more than ${maxEvents} events.`;
     msg.style.color = "red";
     return;
   }
 
-  // Passed validation — continue saving
-  msg.textContent = "";
-  msg.style.color = "green";
-
-  const id = params.get("id");
   const now = new Date().toISOString();
-
-  const newEvent = {
-    id: id || `evt_${Date.now()}`,
-    title,
-    dueDate,
-    duration: parseFloat(duration),
-    tag,
-    createdAt: id ? state.events.find(e => e.id === id).createdAt : now,
+  const data = {
+    id: editing ? editId : generateEventId(),
+    title: form.title.value.trim(),
+    dueDate: form.dueDate.value,
+    duration: Number(form.duration.value),
+    tag: form.tag.value.trim(),
+    createdAt: editing ? (originalCreatedAt || now) : now,
     updatedAt: now
   };
 
-  if (id) {
-    const idx = state.events.findIndex(e => e.id === id);
-    state.events[idx] = newEvent;
-    msg.textContent = "Event updated successfully.";
+  if (editing) {
+    state.updateEvent(data);
+    msg.textContent = "Event updated!";
   } else {
-    state.events.push(newEvent);
-    msg.textContent = "Event added successfully.";
+    state.addEvent(data);
+    msg.textContent = "Event saved!";
+    form.reset();
   }
-
-  save(state.events);
   msg.style.color = "green";
-  msg.setAttribute("role", "status");
-  msg.setAttribute("aria-live", "polite");
-
-  form.reset();
 });
