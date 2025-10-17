@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
+
     <button class="sidebar-toggle">X</button>
 
     <div class="container">
@@ -36,24 +38,25 @@
             
         </header>
 
-        <main>
+        <main id="mainContent">
             <h1>Add Event</h1>
 
             <form id="eventForm" novalidate>
+                <p id="formMsg" aria-live="polite" role="status"></p>
 
-                <label>Event Name:</label>
+                <label for="title">Event Name:</label>
                 <input id="title" name="title" required>
                 <br><br>
 
-                <label>Due Date:</label>
+                <label for="dueDate">Due Date:</label>
                 <input id="dueDate" type="date" required>
                 <br><br>
 
-                <label>Duration (mins)</label>
+                <label for="duration">Duration (mins)</label>
                 <input id="duration" type="number" required>
                 <br><br>
 
-                <label>Tag: 
+                <label for="tag">Tag: 
                     <select id="tag" required>
                         <option value="" disabled selected>Select a tag</option>
                         <option value="Academic">Academic</option>
