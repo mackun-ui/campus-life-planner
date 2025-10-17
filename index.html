@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+    <button class="sidebar-toggle">X</button>
+
     <div class="container">
         <header>
             <aside>
@@ -16,16 +18,16 @@
                 </div>
 
                 <div class="sidebar" id="sidebar">
-                    <a href="index.html" class="active">
+                    <a href="index.html">
                         <h3>Dashboard</h3>
                     </a>
-                    <a href="forms.html" class="active">
+                    <a href="forms.html">
                         <h3>Add Event</h3>
                     </a>
-                    <a href="records.html" class="active">
+                    <a href="records.html">
                         <h3>View Events</h3>
                     </a>
-                    <a href="settings.html" class="active">
+                    <a href="settings.html">
                         <h3>Settings</h3>
                     </a>
                 </div>
@@ -37,20 +39,22 @@
         <main>
             <h1>Dashboard</h1>
 
-            <section id="upcoming">
-                <h3>Upcoming Events</h3>
-                <ul id="upcomingList"></ul>
-            </section>
-
-            <section id="stats">
-                <h3>Stats & Trends</h3>
-                <div id="statsContainer">
+            <div class="dashboard-grid">
+                <section id="stats">
+                    <h3>Stats & Trends</h3>
+                    <div id="statsContainer">
                     <p><strong>Total Events:</strong> <span id="totalEvents">0</span></p>
                     <p><strong>Total Duration:</strong> <span id="totalDuration">0</span></p>
                     <p><strong>Top Tag:</strong> <span id="topTag">N/A</span></p>
-                </div>
-                <div id="trendChart" class="chart"></div>
-            </section>
+                    </div>
+                    <div id="trendChart" class="chart"></div>
+                </section>
+
+                <section id="upcoming">
+                    <h3>Upcoming Events</h3>
+                    <ul id="upcomingList"></ul>
+                </section>
+            </div>
 
             <section id="about">
                 <h3>About Campus Life Planner</h3>
@@ -70,8 +74,7 @@
         import { applySavedTheme } from './scripts/theme.js';
         applySavedTheme();
     </script>
-
-
+    <script src="scripts/sidebar.js"></script>
     <script type="module" src="scripts/dashboard.js"></script>
 </body>
 </html>

@@ -31,17 +31,95 @@ function renderStats() {
 }
 
 function renderTrend() {
-  const days = Array(7).fill(0);
+  // Build last-7-days date keys (from 6 days ago to today)
   const now = new Date();
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
+    days.push(d);
+  }
 
-  state.events.forEach(e => {
-    const diff = Math.floor((now - new Date(e.dueDate)) / (1000 * 60 * 60 * 24));
-    if (diff >= 0 && diff < 7) days[6 - diff]++;
+  // Helper: format a Date to local YYYY-MM-DD (avoids timezone shifts from toISOString)
+  function formatLocalYMD(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  // Collect tags and counts per day (normalize event dates to local YMD)
+  const tagSet = new Set();
+  const counts = days.map(d => {
+    const key = formatLocalYMD(d);
+    const map = {};
+    state.events.forEach(e => {
+      if (!e || !e.dueDate) return;
+      const evDate = new Date(e.dueDate);
+      if (isNaN(evDate)) return;
+      const evKey = formatLocalYMD(evDate);
+      if (evKey !== key) return;
+      const t = e.tag || 'Other';
+      tagSet.add(t);
+      map[t] = (map[t] || 0) + 1;
+    });
+    return map;
   });
 
-  trendChart.innerHTML = days
-    .map(count => `<div class="bar" style="height:${count * 20}px"></div>`)
-    .join("");
+  const tags = Array.from(tagSet);
+  // assign colors to tags (deterministic HSL)
+  const tagColors = {};
+  tags.forEach((t, i) => {
+    const h = (i * 55) % 360;
+    tagColors[t] = `hsl(${h} 70% 55%)`;
+  });
+
+  // Totals per day for scaling
+  const totals = counts.map(m => Object.values(m).reduce((s, v) => s + v, 0));
+  const maxTotal = Math.max(...totals, 1);
+
+  // Size: use container width so chart fits card
+  const rect = trendChart.getBoundingClientRect();
+  const paddingX = 16;
+  const width = Math.max(Math.floor(rect.width - paddingX * 2), 320);
+  const height = 160;
+  const labelArea = 20;
+  const innerH = height - labelArea - 8;
+  const barW = Math.floor(width / days.length);
+
+  // Build SVG groups (stacked bars)
+  const bars = days.map((d, di) => {
+    const dayMap = counts[di];
+    let stackY = innerH; // start from bottom
+    const segments = [];
+    tags.forEach(t => {
+      const val = dayMap[t] || 0;
+      if (val === 0) return;
+      const h = Math.round((val / maxTotal) * innerH);
+      const x = di * barW + paddingX / 2;
+      const y = (height - labelArea - 8) - (innerH - stackY) - h + 8;
+      segments.push(`<rect x="${x}" y="${y}" width="${barW - 8}" height="${h}" rx="3" fill="${tagColors[t]}"></rect>`);
+      stackY -= h;
+    });
+    const label = d.toLocaleDateString(undefined, { weekday: 'short' });
+    const group = `
+      <g class="bar-group" data-day="${d.toISOString().slice(0,10)}">
+        ${segments.join('')}
+        <text x="${di * barW + paddingX/2 + (barW - 8)/2}" y="${height - 4}" font-size="10" fill="var(--clr-muted)" text-anchor="middle">${label}</text>
+      </g>`;
+    return group;
+  }).join('');
+
+  // legend
+  const legend = tags.map(t => `<span class="legend-item"><span class="legend-swatch" style="background:${tagColors[t]}"></span>${t}</span>`).join('');
+
+  trendChart.innerHTML = `
+    <div class="trend-wrapper">
+      <div class="trend-legend">${legend}</div>
+      <svg class="trend-svg" width="100%" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Events by tag in last 7 days">
+        ${bars}
+      </svg>
+    </div>
+  `;
 }
 
 const settings = JSON.parse(localStorage.getItem("campusPlanner:settings") || "{}");

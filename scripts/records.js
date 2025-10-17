@@ -69,8 +69,17 @@ tableBody.addEventListener("click", e => {
 document.querySelectorAll("th[data-sort]").forEach(th => {
   th.addEventListener("click", () => {
     const key = th.dataset.sort;
+    // Toggle direction and clear other headers' indicators
     const direction = th.dataset.dir === "asc" ? "desc" : "asc";
-    th.dataset.dir = direction;
+    document.querySelectorAll("th[data-sort]").forEach(t => {
+      if (t === th) {
+        t.dataset.dir = direction;
+        t.setAttribute('aria-sort', direction === 'asc' ? 'ascending' : 'descending');
+      } else {
+        delete t.dataset.dir;
+        t.removeAttribute('aria-sort');
+      }
+    });
 
     const events = [...state.events];
     events.sort((a, b) => {
@@ -78,11 +87,15 @@ document.querySelectorAll("th[data-sort]").forEach(th => {
         return direction === "asc" ? Number(a.duration) - Number(b.duration) : Number(b.duration) - Number(a.duration);
       }
       if (key === "dueDate") {
+        // Sort by date (newest/oldest depending on direction)
         return direction === "asc" ? new Date(a.dueDate) - new Date(b.dueDate) : new Date(b.dueDate) - new Date(a.dueDate);
       }
-      return direction === "asc"
-        ? String(a[key] || "").localeCompare(String(b[key] || ""))
-        : String(b[key] || "").localeCompare(String(a[key] || ""));
+      // default: string compare (title, tag)
+      const av = String(a[key] || "").toLowerCase();
+      const bv = String(b[key] || "").toLowerCase();
+      if (av < bv) return direction === "asc" ? -1 : 1;
+      if (av > bv) return direction === "asc" ? 1 : -1;
+      return 0;
     });
 
     render(events);
